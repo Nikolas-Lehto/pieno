@@ -10,3 +10,4 @@ source venv/bin/activate        # Activate it
 echo '----------------------------------------    Pieno installed    ----------------------------------------'
 echo
 echo 'Starting Pieno...'
+venv/bin/python3 app.py
