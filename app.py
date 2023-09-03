@@ -31,7 +31,7 @@ BlackSticky = ['NE','NE','NE','NW','NE','NE','NE','NE','NE','NE','NE','NW','NE',
 
 Display = ['G1','P1','I1','Q1','Å1','L1','M1','-1','G2','P2','I2','Q2','Å2','L2','M2','-2','G3']
 
-Version = "alpha-0.5"
+Version = "1.0"
 
 CurrentlyPlaying = dict()
 
