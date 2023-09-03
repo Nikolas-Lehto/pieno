@@ -21,17 +21,18 @@ from src import playsound as ps
 import time
 
 # A dictionary of all the 17.5 TET notes on the first and the second nonus
-notes = {'Fis1': 369.994, 'G1': 384.942, 'Gis1': 400.495, 'Pes1': 416.677, 'P1': 433.512, 'Pis1': 451.027, 'I1': 469.25, 'Q1': 488.21, 'Qis1': 507.935, 'Ås1': 528.457, 'Å1': 549.808, 'Åis1': 572.023, 'L1': 595.134, 'Mes1': 619.18, 'M1': 644.196, 'Mis1': 670.224, 'Fes1': 697.303, 'Lauta1': 725.477, 'Fis2': 739.988, 'G2': 769.884, 'Gis2': 800.99, 'Pes2': 833.354, 'P2': 867.024, 'Pis2': 902.054, 'I2': 938.5, 'Q2': 976.42, 'Qis2': 1015.87, 'Ås2': 1056.914, 'Å2': 1099.616, 'Åis2': 1144.046, 'L2': 1190.268, 'Mes2': 1238.36, 'M2': 1288.392, 'Mis2': 1340.448, 'Fes2': 1394.606, 'Lauta2': 1450.954, 'Fis3': 1479.976, "G3": 1539.768}
+notes = {'Fis0': 184.997, 'G0': 192.471, 'Gis0': 200.2475, 'Pes0': 208.3385, 'P0': 216.756, 'Pis0': 225.5135, 'I0': 234.625, 'Q0': 244.105, 'Qis0': 253.9675, 'Ås0': 264.2285, 'Å0': 274.904, 'Åis0': 286.0115, 'L0': 297.567, 'Mes0': 309.59, 'M0': 322.098, 'Mis0': 335.112, 'Fes0': 348.6515, 'Lauta0': 362.7385, 'Fis1': 369.994, 'G1': 384.942, 'Gis1': 400.495, 'Pes1': 416.677, 'P1': 433.512, 'Pis1': 451.027, 'I1': 469.25, 'Q1': 488.21, 'Qis1': 507.935, 'Ås1': 528.457, 'Å1': 549.808, 'Åis1': 572.023, 'L1': 595.134, 'Mes1': 619.18, 'M1': 644.196, 'Mis1': 670.224, 'Fes1': 697.303, 'Lauta1': 725.477, 'Fis2': 739.988}
 
 # Settings of the keys
-Whites = ['Fis1','Gis1','Pes1','Pis1','Qis1','Ås1','Åis1','Mes1','Mis1','Fes1','Fis2','Gis2','Pes2','Pis2','Qis2','Ås2','Åis2','Mes2','Mis2','Fes2','Fis3']
-Blacks = ['G1','P1','I1','Q1','Å1','L1','M1','Lauta1','G2','P2','I2','Q2','Å2','L2','M2','Lauta2','G3']
+Whites = ['Fis0', 'Gis0', 'Pes0', 'Pis0', 'Qis0', 'Ås0', 'Åis0', 'Mes0', 'Mis0', 'Fes0', 'Fis1', 'Gis1', 'Pes1', 'Pis1', 'Qis1', 'Ås1', 'Åis1', 'Mes1', 'Mis1', 'Fes1', 'Fis2']
+WhitesDisplay = ['Fis', 'Gis', 'Pes', 'Pis', 'Qis', 'Ås', 'Åis', 'Mes', 'Mis', 'Fes', 'Fis', 'Gis', 'Pes', 'Pis', 'Qis', 'Ås', 'Åis', 'Mes', 'Mis', 'Fes', 'Fis']
+
+Blacks = ['G0', 'P0', 'I0', 'Q0', 'Å0', 'L0', 'M0', 'Lauta0', 'G1', 'P1', 'I1', 'Q1', 'Å1', 'L1', 'M1', 'Lauta1', 'G2']
 BlackPos = [0,2,3,4,5,6,7,9,10,11,12,13,14,15,16,18,20]
 BlackSticky = ['NE','NE','NE','NW','NE','NE','NE','NE','NE','NE','NE','NW','NE','NE','NE','NE','NE']
+BlacksDisplay=['G', 'P', 'I', 'Q', 'Å', 'L', 'M', '-', 'G', 'P', 'I', 'Q', 'Å', 'L', 'M', '-', 'G']
 
-Display = ['G1','P1','I1','Q1','Å1','L1','M1','-1','G2','P2','I2','Q2','Å2','L2','M2','-2','G3']
-
-Version = "1.0"
+Version = "1.1"
 
 CurrentlyPlaying = dict()
 
@@ -55,7 +56,7 @@ def main():
     root = tk.Tk()
 
     root.title(f'Pieno {Version}')
-    root.iconphoto(False, tk.PhotoImage(file='resources/icon.png'))
+    # root.iconphoto(False, tk.PhotoImage(file='resources/icon.png'))
 
     root.geometry(f'{WIDTH}x{HEIGHT}')
     root.resizable(False,False)
@@ -66,7 +67,7 @@ def main():
         
         exec(f'{i} = tk.Button(root,height=20,width=10,\
         background=WKEY,activebackground=WKEYACTIVE,\
-        text="{i}", fg="black", anchor="s")')                # Creating the button
+        text="{WhitesDisplay[j]}", fg="black", anchor="s")')                # Creating the button
 
         exec(f'{i}.bind("<ButtonPress-1>",\
         lambda gulag:play("{i}"))')                        # Binding the start function
@@ -80,7 +81,7 @@ def main():
     for i in Blacks:
         exec(f'{i} = tk.Button(root,height=15,width=1,\
         background=BKEY,activebackground=BKEYACTIVE, \
-        text="{Display[j]}", fg="white", anchor="s")')     # Creating the button itself
+        text="{BlacksDisplay[j]}", fg="white", anchor="s")')     # Creating the button itself
 
         exec(f'{i}.bind("<ButtonPress-1>",\
         lambda gulag:play("{i}"))')                        # Binding the start function
